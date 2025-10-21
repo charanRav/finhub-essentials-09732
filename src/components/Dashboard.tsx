@@ -1,5 +1,6 @@
 import { Calculator, Home, User, Car, TrendingUp, PiggyBank, Repeat, DollarSign, Heart, RefreshCw } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import AdBanner from './AdBanner';
 
 interface CalculatorCard {
   id: string;
@@ -99,30 +100,54 @@ const Dashboard = ({ onSelectCalculator }: DashboardProps) => {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {calculators.map((calc, index) => (
-            <Card
-              key={calc.id}
-              className="group cursor-pointer overflow-hidden border-0 shadow-card hover:shadow-hover transition-smooth hover:scale-105 animate-fade-in"
-              style={{ animationDelay: `${index * 50}ms` }}
-              onClick={() => onSelectCalculator(calc.id)}
-            >
-              <div className="p-6 space-y-4">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${calc.gradient} flex items-center justify-center text-white transition-smooth group-hover:scale-110`}>
-                  {calc.icon}
-                </div>
-                <div className="space-y-1">
-                  <h3 className="text-xl font-semibold text-card-foreground">
-                    {calc.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {calc.description}
-                  </p>
-                </div>
-              </div>
-              <div className={`h-1 bg-gradient-to-r ${calc.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`} />
-            </Card>
-          ))}
+        {/* Top Banner Ad */}
+        <div className="flex justify-center mb-8 animate-fade-in">
+          <AdBanner size="leaderboard" className="hidden md:block" />
+          <AdBanner size="mobile" className="md:hidden" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* Main Content - Calculator Grid */}
+          <div className="lg:col-span-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+              {calculators.map((calc, index) => (
+                <Card
+                  key={calc.id}
+                  className="group cursor-pointer overflow-hidden border-0 shadow-card hover:shadow-hover transition-smooth hover:scale-105 animate-fade-in"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                  onClick={() => onSelectCalculator(calc.id)}
+                >
+                  <div className="p-6 space-y-4">
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${calc.gradient} flex items-center justify-center text-white transition-smooth group-hover:scale-110`}>
+                      {calc.icon}
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="text-xl font-semibold text-card-foreground">
+                        {calc.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {calc.description}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={`h-1 bg-gradient-to-r ${calc.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`} />
+                </Card>
+              ))}
+            </div>
+
+            {/* Mid-Content Ad (Between Sections) */}
+            <div className="mt-8 flex justify-center animate-fade-in" style={{ animationDelay: '500ms' }}>
+              <AdBanner size="rectangle" />
+            </div>
+          </div>
+
+          {/* Sidebar Ad */}
+          <div className="hidden lg:block lg:col-span-1">
+            <div className="sticky top-6 space-y-6 animate-fade-in" style={{ animationDelay: '400ms' }}>
+              <AdBanner size="rectangle" />
+              <AdBanner size="rectangle" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
