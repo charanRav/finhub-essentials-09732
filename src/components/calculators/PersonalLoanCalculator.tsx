@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 const PersonalLoanCalculator = () => {
   const [principal, setPrincipal] = useState('50000');
+  const [downPayment, setDownPayment] = useState('0');
+  const [useDownPayment, setUseDownPayment] = useState(false);
   const [rate, setRate] = useState('12');
   const [tenure, setTenure] = useState('12');
   const [tenureUnit, setTenureUnit] = useState<'months' | 'years'>('months');
@@ -17,16 +19,21 @@ const PersonalLoanCalculator = () => {
   const [totalInterest, setTotalInterest] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
   const [numberOfPayments, setNumberOfPayments] = useState(0);
+  const [loanAmount, setLoanAmount] = useState(0);
   const [viewMode, setViewMode] = useState<'monthly' | 'yearly'>('monthly');
 
   useEffect(() => {
     calculatePersonalLoan();
-  }, [principal, rate, tenure, tenureUnit, paymentFreq]);
+  }, [principal, downPayment, useDownPayment, rate, tenure, tenureUnit, paymentFreq]);
 
   const calculatePersonalLoan = () => {
-    const P = parseFloat(principal) || 0;
+    const totalPrice = parseFloat(principal) || 0;
+    const downPmt = useDownPayment ? parseFloat(downPayment) || 0 : 0;
+    const P = totalPrice - downPmt;
     const annualRate = parseFloat(rate) || 0;
     const tenureValue = parseFloat(tenure) || 0;
+
+    setLoanAmount(P);
 
     // Determine periods per year
     const periodsPerYear = paymentFreq === 'monthly' ? 12 : paymentFreq === 'bi-weekly' ? 26 : 52;
@@ -64,6 +71,8 @@ const PersonalLoanCalculator = () => {
 
   const handleReset = () => {
     setPrincipal('50000');
+    setDownPayment('0');
+    setUseDownPayment(false);
     setRate('12');
     setTenure('12');
     setTenureUnit('months');
@@ -89,14 +98,45 @@ const PersonalLoanCalculator = () => {
     <div className="space-y-6">
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="principal">Loan Amount (₹)</Label>
+          <Label htmlFor="principal">Total Amount Needed (₹)</Label>
           <Input
             id="principal"
             type="number"
             value={principal}
             onChange={(e) => setPrincipal(e.target.value)}
-            placeholder="Enter loan amount"
+            placeholder="Enter total amount"
           />
+        </div>
+
+        <div className="space-y-3 p-4 bg-muted/50 rounded-lg border border-border">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="use-down-payment" className="cursor-pointer">
+              Add Down Payment (Optional)
+            </Label>
+            <input
+              type="checkbox"
+              id="use-down-payment"
+              checked={useDownPayment}
+              onChange={(e) => setUseDownPayment(e.target.checked)}
+              className="h-4 w-4 cursor-pointer"
+            />
+          </div>
+          
+          {useDownPayment && (
+            <div className="space-y-2 animate-in fade-in slide-in-from-top-2">
+              <Label htmlFor="down-payment">Down Payment Amount (₹)</Label>
+              <Input
+                id="down-payment"
+                type="number"
+                value={downPayment}
+                onChange={(e) => setDownPayment(e.target.value)}
+                placeholder="Enter down payment"
+              />
+              <p className="text-xs text-muted-foreground">
+                Loan Amount: ₹{loanAmount.toLocaleString('en-IN')}
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -176,6 +216,13 @@ const PersonalLoanCalculator = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-1">
+            <p className="text-sm text-muted-foreground">Loan Amount</p>
+            <p className="text-2xl font-bold text-accent">
+              ₹{loanAmount.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
+            </p>
+          </div>
+          
+          <div className="space-y-1">
             <p className="text-sm text-muted-foreground">{getPaymentLabel()}</p>
             <p className="text-2xl font-bold text-primary">
               ₹{getPaymentAmount().toLocaleString('en-IN', { maximumFractionDigits: 0 })}
@@ -188,17 +235,23 @@ const PersonalLoanCalculator = () => {
               ₹{totalInterest.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
             </p>
           </div>
-          
-          <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Total Amount</p>
-            <p className="text-2xl font-bold text-accent">
-              ₹{totalAmount.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
-            </p>
-          </div>
         </div>
 
-        <div className="pt-4 border-t border-border">
-          <p className="text-sm text-muted-foreground">Total Payments: <span className="font-semibold text-foreground">{numberOfPayments}</span></p>
+        <div className="pt-4 border-t border-border space-y-1">
+          <div className="flex justify-between text-sm">
+            <span className="text-muted-foreground">Total Payments:</span>
+            <span className="font-semibold text-foreground">{numberOfPayments}</span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-muted-foreground">Total Payable:</span>
+            <span className="font-semibold text-foreground">₹{totalAmount.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
+          </div>
+          {useDownPayment && parseFloat(downPayment) > 0 && (
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground">Down Payment:</span>
+              <span className="font-semibold text-foreground">₹{parseFloat(downPayment).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
+            </div>
+          )}
         </div>
       </div>
 
