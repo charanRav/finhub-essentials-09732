@@ -1,4 +1,5 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import AdBanner from './AdBanner';
 import EMICalculator from './calculators/EMICalculator';
 import HomeLoanCalculator from './calculators/HomeLoanCalculator';
 import PersonalLoanCalculator from './calculators/PersonalLoanCalculator';
@@ -34,13 +35,29 @@ const CalculatorDialog = ({ calculatorId, onClose }: CalculatorDialogProps) => {
 
   return (
     <Dialog open={!!calculatorId} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">{config?.title}</DialogTitle>
-          <DialogDescription>{config?.description}</DialogDescription>
-        </DialogHeader>
-        <div className="mt-4">
-          {CalculatorComponent && <CalculatorComponent />}
+      <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+          {/* Main Calculator Content */}
+          <div>
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-bold">{config?.title}</DialogTitle>
+              <DialogDescription>{config?.description}</DialogDescription>
+            </DialogHeader>
+            <div className="mt-4">
+              {CalculatorComponent && <CalculatorComponent />}
+            </div>
+          </div>
+
+          {/* Ad Sidebar - Hidden on mobile, visible on larger screens */}
+          <div className="hidden lg:flex flex-col gap-4 pt-4">
+            <AdBanner size="rectangle" />
+            <AdBanner size="rectangle" />
+          </div>
+        </div>
+
+        {/* Mobile Ad - Shown only on smaller screens at the bottom */}
+        <div className="lg:hidden mt-6 flex justify-center border-t border-border pt-6">
+          <AdBanner size="mobile" />
         </div>
       </DialogContent>
     </Dialog>
