@@ -32,7 +32,7 @@ const AdSense = ({
           display: 'block',
           ...style
         }}
-        data-ad-client="ca-pub-0000000000000000"
+        data-ad-client="ca-pub-1088683909010630"
         data-ad-slot={slot}
         data-ad-format={format}
         data-full-width-responsive={responsive ? 'true' : 'false'}
