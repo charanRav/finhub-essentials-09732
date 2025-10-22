@@ -119,7 +119,7 @@ const CurrencyConverter = () => {
           </span>
         </div>
         <div className="flex items-center gap-2">
-          {lastUpdated && (
+          {lastUpdated && !isNaN(lastUpdated.getTime()) && (
             <span className="text-xs text-muted-foreground">
               Updated {formatDistanceToNow(lastUpdated, { addSuffix: true })}
             </span>
