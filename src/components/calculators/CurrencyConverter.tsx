@@ -56,7 +56,7 @@ const CurrencyConverter = () => {
       
       const data = await response.json();
       setRates(data.rates);
-      setLastUpdated(new Date(data.time_last_update * 1000));
+      setLastUpdated(new Date(data.time_last_updated * 1000));
       
       toast({
         title: "Rates updated",
