@@ -12,3 +12,7 @@ Allow: /
 
 User-agent: *
 Allow: /
+Sitemap: https://allfincal.vercel.app/sitemap.xml
+
+User-agent: *
+Allow: /
