@@ -1,5 +1,15 @@
-import { Shield, Eye, Cookie, Lock, Database, FileText } from 'lucide-react';
+import { Shield, Eye, Cookie, Lock, Database, FileText, Home, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import SEO from '@/components/SEO';
 
 const Privacy = () => {
   const sections = [
@@ -79,103 +89,132 @@ To exercise these rights, contact us at support@allfincal.com.`,
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="gradient-subtle py-20 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
-          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground mx-auto mb-6">
-            <Shield className="w-10 h-10" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Privacy Policy
-          </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-          </p>
-        </div>
-      </section>
+    <>
+      <SEO 
+        title="Privacy Policy - How We Protect Your Data"
+        description="AllFinCal Privacy Policy: Learn how we collect, use, and protect your personal information. Your privacy and data security are our top priorities."
+        keywords="privacy policy, data protection, user privacy, cookie policy, GDPR compliance"
+        canonical="/privacy"
+      />
+      <div className="container mx-auto px-4 py-8">
+        <Breadcrumb className="mb-6">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/" className="flex items-center gap-1">
+                  <Home className="w-4 h-4" />
+                  Home
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator>
+              <ChevronRight className="w-4 h-4" />
+            </BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage>Privacy Policy</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
-      {/* Introduction */}
-      <section className="py-12 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="p-8 border-0 shadow-lg">
-            <p className="text-muted-foreground leading-relaxed">
-              At AllFinCal, your privacy is paramount. This Privacy Policy explains how we collect, use, protect, and handle your information when you use our financial calculators and services. By using AllFinCal, you agree to the practices described in this policy.
-            </p>
-          </Card>
-        </div>
-      </section>
-
-      {/* Policy Sections */}
-      <section className="py-8 px-4">
-        <div className="container mx-auto max-w-4xl space-y-8">
-          {sections.map((section, index) => (
-            <Card key={index} className="p-8 border-0 shadow-card">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground flex-shrink-0">
-                  {section.icon}
-                </div>
-                <h2 className="text-2xl font-bold text-foreground">
-                  {section.title}
-                </h2>
+        <div className="min-h-screen">
+          {/* Hero Section */}
+          <section className="gradient-subtle py-20 px-4">
+            <div className="container mx-auto max-w-4xl text-center">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground mx-auto mb-6">
+                <Shield className="w-10 h-10" />
               </div>
-              <div className="ml-16 text-muted-foreground leading-relaxed whitespace-pre-line">
-                {section.content}
-              </div>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Children's Privacy */}
-      <section className="py-8 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="p-8 border-0 shadow-lg">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Children's Privacy
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              AllFinCal is not intended for children under 13 years of age. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us immediately at support@allfincal.com.
-            </p>
-          </Card>
-        </div>
-      </section>
-
-      {/* Changes to Policy */}
-      <section className="py-8 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="p-8 border-0 shadow-lg">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Changes to This Privacy Policy
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              We may update this Privacy Policy from time to time to reflect changes in our practices or for legal, operational, or regulatory reasons. We will notify you of any material changes by posting the updated policy on this page with a new "Last updated" date.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              We encourage you to review this Privacy Policy periodically to stay informed about how we protect your information.
-            </p>
-          </Card>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-8 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="p-8 border-0 shadow-lg text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Questions or Concerns?
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              If you have any questions about this Privacy Policy or our privacy practices, please don't hesitate to contact us:
-            </p>
-            <div className="space-y-2 text-primary font-medium">
-              <p>Email: support@allfincal.com</p>
-              <p>Through our <a href="/contact" className="underline hover:text-primary/80">Contact Page</a></p>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                Privacy Policy
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+              </p>
             </div>
-          </Card>
+          </section>
+
+          {/* Introduction */}
+          <section className="py-12 px-4">
+            <div className="container mx-auto max-w-4xl">
+              <Card className="p-8 border-0 shadow-lg">
+                <p className="text-muted-foreground leading-relaxed">
+                  At AllFinCal, your privacy is paramount. This Privacy Policy explains how we collect, use, protect, and handle your information when you use our financial calculators and services. By using AllFinCal, you agree to the practices described in this policy.
+                </p>
+              </Card>
+            </div>
+          </section>
+
+          {/* Policy Sections */}
+          <section className="py-8 px-4">
+            <div className="container mx-auto max-w-4xl space-y-8">
+              {sections.map((section, index) => (
+                <Card key={index} className="p-8 border-0 shadow-card">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground flex-shrink-0">
+                      {section.icon}
+                    </div>
+                    <h2 className="text-2xl font-bold text-foreground">
+                      {section.title}
+                    </h2>
+                  </div>
+                  <div className="ml-16 text-muted-foreground leading-relaxed whitespace-pre-line">
+                    {section.content}
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* Children's Privacy */}
+          <section className="py-8 px-4 bg-muted/30">
+            <div className="container mx-auto max-w-4xl">
+              <Card className="p-8 border-0 shadow-lg">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Children's Privacy
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  AllFinCal is not intended for children under 13 years of age. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us immediately at support@allfincal.com.
+                </p>
+              </Card>
+            </div>
+          </section>
+
+          {/* Changes to Policy */}
+          <section className="py-8 px-4">
+            <div className="container mx-auto max-w-4xl">
+              <Card className="p-8 border-0 shadow-lg">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Changes to This Privacy Policy
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  We may update this Privacy Policy from time to time to reflect changes in our practices or for legal, operational, or regulatory reasons. We will notify you of any material changes by posting the updated policy on this page with a new "Last updated" date.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  We encourage you to review this Privacy Policy periodically to stay informed about how we protect your information.
+                </p>
+              </Card>
+            </div>
+          </section>
+
+          {/* Contact Section */}
+          <section className="py-8 px-4 bg-muted/30">
+            <div className="container mx-auto max-w-4xl">
+              <Card className="p-8 border-0 shadow-lg text-center">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Questions or Concerns?
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  If you have any questions about this Privacy Policy or our privacy practices, please don't hesitate to contact us:
+                </p>
+                <div className="space-y-2 text-primary font-medium">
+                  <p>Email: support@allfincal.com</p>
+                  <p>Through our <Link to="/contact" className="underline hover:text-primary/80">Contact Page</Link></p>
+                </div>
+              </Card>
+            </div>
+          </section>
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 };
 

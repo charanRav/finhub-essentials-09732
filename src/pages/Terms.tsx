@@ -1,6 +1,16 @@
-import { FileText, AlertCircle, Scale, Ban, Lightbulb, Mail } from 'lucide-react';
+import { FileText, AlertCircle, Scale, Ban, Lightbulb, Mail, Home, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import SEO from '@/components/SEO';
 
 const Terms = () => {
   const sections = [
@@ -84,126 +94,155 @@ These terms apply to all visitors, users, and others who access or use the Servi
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="gradient-subtle py-20 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
-          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground mx-auto mb-6">
-            <FileText className="w-10 h-10" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Terms & Conditions
-          </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-          </p>
-        </div>
-      </section>
+    <>
+      <SEO 
+        title="Terms & Conditions - User Agreement"
+        description="Read AllFinCal's Terms and Conditions. Understand the rules and guidelines for using our financial calculators and investment planning tools."
+        keywords="terms and conditions, user agreement, terms of service, legal terms"
+        canonical="/terms"
+      />
+      <div className="container mx-auto px-4 py-8">
+        <Breadcrumb className="mb-6">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/" className="flex items-center gap-1">
+                  <Home className="w-4 h-4" />
+                  Home
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator>
+              <ChevronRight className="w-4 h-4" />
+            </BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage>Terms & Conditions</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
-      {/* Important Notice */}
-      <section className="py-12 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <Alert className="border-primary/50 bg-primary/5">
-            <AlertCircle className="h-5 w-5 text-primary" />
-            <AlertDescription className="text-foreground">
-              <strong>Please read these terms carefully.</strong> By using AllFinCal, you agree to these Terms and Conditions. These calculators are for informational purposes only and should not replace professional financial advice.
-            </AlertDescription>
-          </Alert>
-        </div>
-      </section>
+        <div className="min-h-screen">
+          {/* Hero Section */}
+          <section className="gradient-subtle py-20 px-4">
+            <div className="container mx-auto max-w-4xl text-center">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground mx-auto mb-6">
+                <FileText className="w-10 h-10" />
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                Terms & Conditions
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+              </p>
+            </div>
+          </section>
 
-      {/* Terms Sections */}
-      <section className="py-8 px-4">
-        <div className="container mx-auto max-w-4xl space-y-8">
-          {sections.map((section, index) => (
-            <Card key={index} className="p-8 border-0 shadow-card">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground flex-shrink-0">
-                  {section.icon}
-                </div>
-                <h2 className="text-2xl font-bold text-foreground">
-                  {section.title}
+          {/* Important Notice */}
+          <section className="py-12 px-4">
+            <div className="container mx-auto max-w-4xl">
+              <Alert className="border-primary/50 bg-primary/5">
+                <AlertCircle className="h-5 w-5 text-primary" />
+                <AlertDescription className="text-foreground">
+                  <strong>Please read these terms carefully.</strong> By using AllFinCal, you agree to these Terms and Conditions. These calculators are for informational purposes only and should not replace professional financial advice.
+                </AlertDescription>
+              </Alert>
+            </div>
+          </section>
+
+          {/* Terms Sections */}
+          <section className="py-8 px-4">
+            <div className="container mx-auto max-w-4xl space-y-8">
+              {sections.map((section, index) => (
+                <Card key={index} className="p-8 border-0 shadow-card">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground flex-shrink-0">
+                      {section.icon}
+                    </div>
+                    <h2 className="text-2xl font-bold text-foreground">
+                      {section.title}
+                    </h2>
+                  </div>
+                  <div className="ml-16 text-muted-foreground leading-relaxed whitespace-pre-line">
+                    {section.content}
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* Additional Terms */}
+          <section className="py-8 px-4 bg-muted/30">
+            <div className="container mx-auto max-w-4xl space-y-8">
+              <Card className="p-8 border-0 shadow-lg">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Third-Party Links and Services
                 </h2>
-              </div>
-              <div className="ml-16 text-muted-foreground leading-relaxed whitespace-pre-line">
-                {section.content}
-              </div>
-            </Card>
-          ))}
-        </div>
-      </section>
+                <p className="text-muted-foreground leading-relaxed">
+                  AllFinCal may contain links to third-party websites or services. We are not responsible for the content, privacy policies, or practices of any third-party sites. Accessing third-party links is at your own risk, and we encourage you to review their terms and policies.
+                </p>
+              </Card>
 
-      {/* Additional Terms */}
-      <section className="py-8 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-4xl space-y-8">
-          <Card className="p-8 border-0 shadow-lg">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Third-Party Links and Services
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              AllFinCal may contain links to third-party websites or services. We are not responsible for the content, privacy policies, or practices of any third-party sites. Accessing third-party links is at your own risk, and we encourage you to review their terms and policies.
-            </p>
-          </Card>
+              <Card className="p-8 border-0 shadow-lg">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Advertising
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  AllFinCal displays advertisements through Google AdSense. We do not control the content of these ads. Advertisers are solely responsible for ensuring their ads comply with applicable laws. Clicking on ads is at your own discretion.
+                </p>
+              </Card>
 
-          <Card className="p-8 border-0 shadow-lg">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Advertising
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              AllFinCal displays advertisements through Google AdSense. We do not control the content of these ads. Advertisers are solely responsible for ensuring their ads comply with applicable laws. Clicking on ads is at your own discretion.
-            </p>
-          </Card>
+              <Card className="p-8 border-0 shadow-lg">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Modifications to Terms
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  We reserve the right to modify these Terms and Conditions at any time. Changes will be posted on this page with an updated "Last updated" date. Continued use of the Service after changes constitutes acceptance of the revised terms.
+                </p>
+              </Card>
 
-          <Card className="p-8 border-0 shadow-lg">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Modifications to Terms
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              We reserve the right to modify these Terms and Conditions at any time. Changes will be posted on this page with an updated "Last updated" date. Continued use of the Service after changes constitutes acceptance of the revised terms.
-            </p>
-          </Card>
+              <Card className="p-8 border-0 shadow-lg">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Governing Law
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  These Terms and Conditions are governed by and construed in accordance with the laws of India. Any disputes arising from these terms or use of the Service shall be subject to the exclusive jurisdiction of the courts in India.
+                </p>
+              </Card>
 
-          <Card className="p-8 border-0 shadow-lg">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Governing Law
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              These Terms and Conditions are governed by and construed in accordance with the laws of India. Any disputes arising from these terms or use of the Service shall be subject to the exclusive jurisdiction of the courts in India.
-            </p>
-          </Card>
-
-          <Card className="p-8 border-0 shadow-lg">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Severability
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force and effect.
-            </p>
-          </Card>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-8 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="p-8 border-0 shadow-lg text-center">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground mx-auto mb-4">
-              <Mail className="w-8 h-8" />
+              <Card className="p-8 border-0 shadow-lg">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Severability
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force and effect.
+                </p>
+              </Card>
             </div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Questions About These Terms?
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              If you have any questions or concerns about these Terms and Conditions, please contact us:
-            </p>
-            <div className="space-y-2 text-primary font-medium">
-              <p>Email: support@allfincal.com</p>
-              <p>Through our <a href="/contact" className="underline hover:text-primary/80">Contact Page</a></p>
+          </section>
+
+          {/* Contact Section */}
+          <section className="py-8 px-4">
+            <div className="container mx-auto max-w-4xl">
+              <Card className="p-8 border-0 shadow-lg text-center">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground mx-auto mb-4">
+                  <Mail className="w-8 h-8" />
+                </div>
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Questions About These Terms?
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  If you have any questions or concerns about these Terms and Conditions, please contact us:
+                </p>
+                <div className="space-y-2 text-primary font-medium">
+                  <p>Email: support@allfincal.com</p>
+                  <p>Through our <Link to="/contact" className="underline hover:text-primary/80">Contact Page</Link></p>
+                </div>
+              </Card>
             </div>
-          </Card>
+          </section>
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 };
 
