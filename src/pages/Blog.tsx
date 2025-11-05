@@ -13,16 +13,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import SEO from '@/components/SEO';
-
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  readTime: string;
-  date: string;
-  featured: boolean;
-}
+import { blogPosts, type BlogPost } from '@/data/blogPosts';
 
 const Blog = () => {
   const schema = {
@@ -47,63 +38,6 @@ const Blog = () => {
     { id: 'realestate', name: 'Real Estate', icon: <Home className="w-4 h-4" /> },
   ];
 
-  // Placeholder blog posts - you'll replace these with real content
-  const blogPosts: BlogPost[] = [
-    {
-      id: '1',
-      title: 'How to Budget Your Monthly Salary Wisely',
-      excerpt: 'Master the 50/30/20 rule and learn practical strategies to manage your income effectively. Discover how to allocate your salary for needs, wants, and savings without compromising your lifestyle.',
-      category: 'saving',
-      readTime: '8 min read',
-      date: '2025-01-15',
-      featured: true,
-    },
-    {
-      id: '2',
-      title: 'Top 5 Low-Risk Investment Options for Beginners in 2025',
-      excerpt: 'Starting your investment journey? Explore safe investment options including fixed deposits, mutual funds, and government schemes perfect for first-time investors looking for steady returns.',
-      category: 'investing',
-      readTime: '10 min read',
-      date: '2025-01-12',
-      featured: true,
-    },
-    {
-      id: '3',
-      title: 'Understanding Credit Scores and How They Affect Loans',
-      excerpt: 'Your credit score impacts loan approvals and interest rates. Learn what factors influence your score, how to check it for free, and proven strategies to improve it over time.',
-      category: 'loans',
-      readTime: '7 min read',
-      date: '2025-01-10',
-      featured: false,
-    },
-    {
-      id: '4',
-      title: 'Best Mutual Funds to Start SIP in 2025',
-      excerpt: 'Systematic Investment Plans (SIPs) make investing easy and disciplined. Discover top-performing mutual funds across equity, debt, and hybrid categories suitable for different risk profiles.',
-      category: 'investing',
-      readTime: '12 min read',
-      date: '2025-01-08',
-      featured: true,
-    },
-    {
-      id: '5',
-      title: 'Fixed Deposit vs Recurring Deposit: Which is Better?',
-      excerpt: 'Compare FD and RD to understand which savings instrument suits your financial goals. Learn about interest rates, flexibility, and ideal use cases for each option.',
-      category: 'saving',
-      readTime: '6 min read',
-      date: '2025-01-05',
-      featured: false,
-    },
-    {
-      id: '6',
-      title: 'Home Loan EMI Calculator: How to Plan Your Dream Home',
-      excerpt: 'Planning to buy a home? Understand EMI calculations, factors affecting your loan eligibility, tax benefits, and smart strategies to reduce your home loan burden.',
-      category: 'realestate',
-      readTime: '9 min read',
-      date: '2025-01-03',
-      featured: false,
-    },
-  ];
 
   const filteredPosts = selectedCategory === 'all' 
     ? blogPosts 
@@ -191,9 +125,11 @@ const Blog = () => {
                         <span>•</span>
                         <span>{featuredPost.readTime}</span>
                       </div>
-                      <Button className="w-fit gap-2">
-                        Read Article
-                        <ArrowRight className="w-4 h-4" />
+                      <Button className="w-fit gap-2" asChild>
+                        <Link to={`/blog/${featuredPost.slug}`}>
+                          Read Article
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
                       </Button>
                     </div>
                   </div>
@@ -227,42 +163,45 @@ const Blog = () => {
             <div className="container mx-auto max-w-6xl">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredPosts.map((post) => (
-                  <Card
-                    key={post.id}
-                    className="group overflow-hidden border-0 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105 flex flex-col"
+                  <Link 
+                    key={post.id} 
+                    to={`/blog/${post.slug}`}
+                    className="group"
                   >
-                    <div className="p-6 flex-1 flex flex-col">
-                      <div className="flex items-center justify-between mb-4">
-                        <Badge className="capitalize">{post.category}</Badge>
-                        {post.featured && (
-                          <Badge variant="secondary" className="text-xs">
-                            Featured
-                          </Badge>
-                        )}
-                      </div>
-                      
-                      <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                        {post.title}
-                      </h3>
-                      
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
-                        {post.excerpt}
-                      </p>
-                      
-                      <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
-                          {new Date(post.date).toLocaleDateString('en-US', { 
-                            month: 'short', 
-                            day: 'numeric' 
-                          })}
+                    <Card className="h-full overflow-hidden border-0 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105 flex flex-col">
+                      <div className="p-6 flex-1 flex flex-col">
+                        <div className="flex items-center justify-between mb-4">
+                          <Badge className="capitalize">{post.category}</Badge>
+                          {post.featured && (
+                            <Badge variant="secondary" className="text-xs">
+                              Featured
+                            </Badge>
+                          )}
                         </div>
-                        <span>{post.readTime}</span>
+                        
+                        <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                          {post.title}
+                        </h3>
+                        
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
+                          {post.excerpt}
+                        </p>
+                        
+                        <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            {new Date(post.date).toLocaleDateString('en-US', { 
+                              month: 'short', 
+                              day: 'numeric' 
+                            })}
+                          </div>
+                          <span>{post.readTime}</span>
+                        </div>
                       </div>
-                    </div>
-                    
-                    <div className="h-1 bg-gradient-to-r from-primary to-primary/60 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  </Card>
+                      
+                      <div className="h-1 bg-gradient-to-r from-primary to-primary/60 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                    </Card>
+                  </Link>
                 ))}
               </div>
 
