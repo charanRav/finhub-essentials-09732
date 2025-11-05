@@ -15,6 +15,9 @@ const AdBanner = ({ size = 'rectangle', className = '' }: AdBannerProps) => {
 
   const dim = dimensions[size];
 
+  // Replace 'ca-pub-XXXXXXXXXXXXXXXX' with your actual AdSense publisher ID
+  // To enable real ads, replace the placeholder with your actual ad slot ID
+
   return (
     <Card className={`overflow-hidden border border-border/50 bg-muted/30 ${className}`}>
       <div 
@@ -28,6 +31,14 @@ const AdBanner = ({ size = 'rectangle', className = '' }: AdBannerProps) => {
         <div className="text-xs text-muted-foreground font-medium tracking-wide">
           Advertisement
         </div>
+        {/* AdSense ad unit - Replace data-ad-client and data-ad-slot with your values
+        <ins className="adsbygoogle"
+             style={{ display: 'block' }}
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        */}
         <div 
           className="relative w-full bg-gradient-to-br from-muted to-muted/50 rounded border border-border/30 flex items-center justify-center"
           style={{ 
