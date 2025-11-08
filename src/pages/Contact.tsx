@@ -98,7 +98,7 @@ const Contact = () => {
       <SEO 
         title="Contact Us - Get in Touch with AllFinCal Team"
         description="Have questions about our financial calculators? Need support or want to provide feedback? Contact AllFinCal team for assistance with your financial planning needs."
-        keywords="contact AllFinCal, financial calculator support, investment tools help, feedback"
+        keywords="contact AllFinCal, financial calculator support, investment tools help, feedback, contact us, get in touch, customer support, help center, calculator help, financial planning assistance, technical support, calculator queries, calculator issues, financial tools support, contact financial advisor, reach us, email support, contact form, query resolution, calculator questions, investment help, loan calculator help, EMI calculator support, SIP calculator queries, FD calculator questions, financial planning support, calculator guidance, user support, customer service, feedback form, suggestions, feature request, calculator improvement, report issue, business inquiries, partnership opportunities, collaboration, media inquiries, press contact, advertise with us, calculator support team, financial tools assistance, AllFinCal help, calculator troubleshooting, how to use calculator, calculator tutorial help, user queries, calculator accuracy questions"
         canonical="/contact"
         schema={schema}
       />

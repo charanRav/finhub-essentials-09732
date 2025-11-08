@@ -93,7 +93,7 @@ To exercise these rights, contact us at support@allfincal.com.`,
       <SEO 
         title="Privacy Policy - How We Protect Your Data"
         description="AllFinCal Privacy Policy: Learn how we collect, use, and protect your personal information. Your privacy and data security are our top priorities."
-        keywords="privacy policy, data protection, user privacy, cookie policy, GDPR compliance"
+        keywords="privacy policy, data protection, user privacy, cookie policy, GDPR compliance, privacy statement, data privacy, information security, personal data protection, user data security, privacy practices, data handling, information collection, data usage, privacy rights, user rights, data security policy, online privacy, website privacy, calculator privacy, financial data privacy, secure calculator, encrypted data, privacy compliance, data protection act, GDPR, privacy regulations, cookie consent, tracking policy, analytics privacy, advertising privacy, third party privacy, Google AdSense privacy, Google Analytics privacy, data retention, data deletion, privacy control, opt-out, user consent, confidentiality, data encryption, secure browsing, HTTPS security, privacy notice, transparency, data governance, privacy guidelines, information protection, personal information, sensitive data, financial privacy, user confidentiality, privacy terms, privacy law, compliance policy, digital privacy, internet privacy"
         canonical="/privacy"
       />
       <div className="container mx-auto px-4 py-8">

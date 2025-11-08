@@ -98,7 +98,7 @@ These terms apply to all visitors, users, and others who access or use the Servi
       <SEO 
         title="Terms & Conditions - User Agreement"
         description="Read AllFinCal's Terms and Conditions. Understand the rules and guidelines for using our financial calculators and investment planning tools."
-        keywords="terms and conditions, user agreement, terms of service, legal terms"
+        keywords="terms and conditions, user agreement, terms of service, legal terms, terms of use, service agreement, user terms, website terms, legal agreement, terms and policies, usage terms, service terms, calculator terms, financial tools terms, disclaimer, liability disclaimer, warranty disclaimer, legal disclaimer, financial disclaimer, investment disclaimer, terms acceptance, user responsibilities, service rules, usage guidelines, acceptable use policy, prohibited use, intellectual property, copyright, content ownership, trademark, service limitations, liability limitations, indemnification, dispute resolution, governing law, jurisdiction, legal compliance, service modifications, terms updates, agreement changes, binding terms, enforceable terms, legal obligations, user conduct, service access, website rules, platform terms, online terms, digital agreement, electronic agreement, clickwrap agreement, browsewrap agreement, legal notice, statutory requirements, regulatory compliance"
         canonical="/terms"
       />
       <div className="container mx-auto px-4 py-8">

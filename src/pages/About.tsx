@@ -48,7 +48,7 @@ const About = () => {
       <SEO 
         title="About Us - Your Trusted Financial Planning Partner"
         description="Learn about AllFinCal's mission to simplify personal finance and investment planning. Discover how we help millions make smarter financial decisions with free calculators and expert insights."
-        keywords="about AllFinCal, financial planning mission, investment tools team, finance calculator about"
+        keywords="about AllFinCal, financial planning mission, investment tools team, finance calculator about, about us, who we are, our mission, our vision, financial literacy, financial education, free financial tools, trusted financial calculator, accurate calculator, reliable financial tools, Indian financial planning, personal finance India, investment planning India, financial planning company, financial technology, fintech tools, money management platform, wealth planning tools, financial calculator website, best financial calculator, top financial tools India, financial planning resources, financial calculator team, expert financial tools, professional calculators, financial guidance, money planning assistance, investment advice tools, financial decision tools, smart money management, financial empowerment, democratizing finance, accessible financial planning, user-friendly calculators, financial independence tools, financial wellness platform, comprehensive financial tools"
         canonical="/about"
         schema={schema}
       />
