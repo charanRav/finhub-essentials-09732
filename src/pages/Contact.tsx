@@ -27,6 +27,7 @@ const Contact = () => {
   };
 
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,7 +35,7 @@ const Contact = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -58,18 +59,48 @@ const Contact = () => {
       return;
     }
 
-    toast({
-      title: 'Message Sent!',
-      description: 'Thank you for contacting us. We\'ll get back to you within 24-48 hours.',
-    });
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-    });
+    try {
+      // Submit to Formspree
+      const response = await fetch('https://formspree.io/f/xblpqoqg', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: 'Message Sent!',
+          description: "Thank you for contacting us. We'll get back to you within 24-48 hours.",
+        });
+
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to send message. Please try again later.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -219,9 +250,14 @@ const Contact = () => {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full gap-2" size="lg">
+                  <Button 
+                    type="submit" 
+                    className="w-full gap-2" 
+                    size="lg"
+                    disabled={isSubmitting}
+                  >
                     <Send className="w-4 h-4" />
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
               </Card>
